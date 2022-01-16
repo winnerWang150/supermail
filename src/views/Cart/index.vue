@@ -1,29 +1,79 @@
 <template>
-  <div>
-
+  <div class="cart">
+    <wrapper :probe-type="0" :pull-up-load="false">
+      <ul>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>52345234234</li>
+        <li>dfsdfsdf</li>
+        <li>123123</li>
+        <li>ewrwer</li>
+        <li>13123123</li>
+        <li>ewrwer</li>
+        <li>123123123123</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>52345234234</li>
+        <li>dfsdfsdf</li>
+        <li>123123</li>
+        <li>ewrwer</li>
+        <li>13123123</li>
+        <li>ewrwer</li>
+        <li>123123123123</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>52345234234</li>
+        <li>dfsdfsdf</li>
+        <li>123123</li>
+        <li>ewrwer</li>
+        <li>13123123</li>
+        <li>ewrwer</li>
+        <li>123123123123</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>52345234234</li>
+        <li>dfsdfsdf</li>
+        <li>123123</li>
+        <li>ewrwer</li>
+        <li>13123123</li>
+        <li>ewrwer</li>
+        <li>123123123123</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>sdafsdfsdfsdfsf</li>
+        <li>52345234234</li>
+        <li>dfsdfsdf</li>
+        <li>123123</li>
+        <li>ewrwer</li>
+        <li>13123123</li>
+        <li>ewrwer</li>
+        <li>123123123123</li>
+      </ul>
+    </wrapper>
   </div>
 </template>
 <script>
-// import BScroll from 'better-scroll'
+import wrapper from 'components/common/BScroll/BScroll'
 export default {
+  components: {
+    wrapper
+  },
   data () {
     return {
       BScroll: ''
     }
   },
   mounted () {
-    // console.log(document.querySelector('.wrapper'))
-    // this.BScroll = new BScroll('.wrapper', {
-    //   scrollY: true,
-    //   click: true
-    // })
   }
 }
 </script>
 <style lang="css">
-  /* .wrapper{
+  .cart{
     height: 400px;
-    background: red;
-    overflow-y:scroll ;
-  } */
+    overflow: hidden;
+  }
 </style>

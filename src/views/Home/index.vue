@@ -3,14 +3,14 @@
       <navbar class="navbar-home">
         <span class="navbar-home-span" slot="middle">购物街</span>
       </navbar>
-      <wrapper ref="wrapper">
+      <wrapper ref="wrapper" @scrollValArr="getScrollVal" :probe-type="3" :pull-up-load="true" @pullUpLoad="loadMore">
         <rotation class="rotation" :autoplay='5000' :picHeight='150' :imgList="bannerList" />
         <recommond :dataList="recommondList" />
         <feature/>
         <tabcontrol :tabList="['流行','新款','精选']" @changeTabControlList='getTabControlList' class="Tabcontrol"></tabcontrol>
         <goodsList :goodsList="goods[changeGoodsCata].list"></goodsList>
       </wrapper>
-      <backtop @click.native="BackTop"/>
+      <backtop :backTopIsShow="backTopIsShow" @click.native="BackTop"/>
   </div>
 </template>
 <script>
@@ -43,7 +43,8 @@ export default {
         new: { page: 0, list: [] },
         sell: { page: 0, list: [] }
       },
-      changeGoodsCata: 'pop'
+      changeGoodsCata: 'pop',
+      backTopIsShow: null
     }
   },
   created () {
@@ -67,6 +68,7 @@ export default {
       this.goods[type].page += 1
       getGoodsData(type, this.goods[type].page).then(res => {
         this.goods[type].list.push(...res.data.list)
+        this.$refs.wrapper.BScroll.refresh()
       })
     },
     getTabControlList (index) {
@@ -87,7 +89,28 @@ export default {
     },
     BackTop () {
       this.$refs.wrapper.backTop()
+    },
+    getScrollVal (pos) {
+      // console.log(pos)
+      if ((-pos.y) > 900) {
+        debugger
+        this.backTopIsShow = true
+      } else {
+        this.backTopIsShow = false
+      }
+    },
+    loadMore () {
+      this.getGoodsList(this.changeGoodsCata)
     }
+  },
+  computed: {
+    // backTopIsShow () {
+    //   if (this.scrollPos > 900) {
+    //     return true
+    //   } else {
+    //     return false
+    //   }
+    // }
   }
 }
 </script>

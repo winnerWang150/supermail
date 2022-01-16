@@ -8,6 +8,16 @@
 <script>
 import BScroll from 'better-scroll'
 export default {
+  props: {
+    probeType: {
+      type: Number,
+      default: 0
+    },
+    pullUpLoad: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       BScroll: null
@@ -20,13 +30,19 @@ export default {
   },
   mounted () {
     this.BScroll = new BScroll(this.$refs.wrapper, {
-      pullUpLoad: true
+      pullUpLoad: this.pullUpLoad,
+      probeType: this.probeType,
+      click: true
     })
-    this.BScroll.on('pullingUp', () => {
-      setTimeout(() => {
+    if (this.pullUpLoad === true) {
+      this.BScroll.on('pullingUp', () => {
+        console.log('上拉加载')
         this.BScroll.finishPullUp()
-      }, 2000)
-      this.BScroll.refresh()
+        this.$emit('pullUpLoad')
+      })
+    }
+    this.BScroll.on('scroll', (pos) => {
+      this.$emit('scrollValArr', pos)
     })
   }
 }

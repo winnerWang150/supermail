@@ -1,10 +1,16 @@
 <template>
-  <div class="backTop">
+  <div class="backTop" v-show="backTopIsShow">
       <img src="~assets/img/BackTop/backTop.svg" alt="">
   </div>
 </template>
 <script>
 export default {
+  props: {
+    backTopIsShow: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 <style lang="css" scoped>
