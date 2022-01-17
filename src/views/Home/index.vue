@@ -134,7 +134,7 @@ export default {
     top:41px;
   }
   .home{
-    margin-top:41px;
+    padding-top:41px;
     height: 100vh;
   }
 </style>
