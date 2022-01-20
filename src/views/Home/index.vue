@@ -56,6 +56,15 @@ export default {
     // 请求sell
     this.getGoodsList('sell')
   },
+  mounted () {
+    const refresh = this.$utils.debounce(this.$refs.wrapper.itemRefresh, 300)
+
+    this.$bus.$on('itemRefresh', () => {
+      console.log('图片加载完毕')
+      // this.$refs.wrapper.itemRefresh()
+      refresh('aha')
+    })
+  },
   methods: {
     getHomeData () {
       getHomeData().then(res => {
@@ -68,7 +77,7 @@ export default {
       this.goods[type].page += 1
       getGoodsData(type, this.goods[type].page).then(res => {
         this.goods[type].list.push(...res.data.list)
-        this.$refs.wrapper.BScroll.refresh()
+        this.$refs.wrapper.finishPullUp()
       })
     },
     getTabControlList (index) {
@@ -93,7 +102,6 @@ export default {
     getScrollVal (pos) {
       // console.log(pos)
       if ((-pos.y) > 900) {
-        debugger
         this.backTopIsShow = true
       } else {
         this.backTopIsShow = false

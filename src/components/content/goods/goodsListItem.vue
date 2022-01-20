@@ -1,7 +1,7 @@
 <template>
   <div class="goodsItem">
     <div @click="clientUrl(goodsItem.clientUrl)">
-      <img :src="goodsItem.show.img" alt="">
+      <img :src="goodsItem.show.img" alt="" @load="imgFinishoad">
     </div>
     <div class="title">{{goodsItem.title}}</div>
     <div class="discription">
@@ -23,6 +23,10 @@ export default {
   methods: {
     clientUrl (url) {
       window.open(url, '_self')
+    },
+    imgFinishoad () {
+      console.log('imgFinish')
+      this.$bus.$emit('itemRefresh')
     }
   }
 }

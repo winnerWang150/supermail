@@ -26,6 +26,13 @@ export default {
   methods: {
     backTop () {
       this.BScroll.scrollTo(0, 0, 300)
+    },
+    itemRefresh (msg) {
+      console.log('我执行了刷新操作' + msg)
+      this.BScroll.refresh()
+    },
+    finishPullUp () {
+      this.BScroll && this.BScroll.finishPullUp()
     }
   },
   mounted () {
@@ -34,10 +41,10 @@ export default {
       probeType: this.probeType,
       click: true
     })
-    if (this.pullUpLoad === true) {
+    if (this.pullUpLoad) {
       this.BScroll.on('pullingUp', () => {
         console.log('上拉加载')
-        this.BScroll.finishPullUp()
+        // this.finishPullUp()
         this.$emit('pullUpLoad')
       })
     }
